@@ -17,7 +17,7 @@
       <uri>model://mapa</uri>
     </include>
 
-    <!-- map -->
+    <!-- robot -->
     <include>
       <uri>model://my_turtlebot3</uri>
     </include>

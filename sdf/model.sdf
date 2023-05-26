@@ -1,11 +1,12 @@
 <?xml version="1.0" ?>
 <sdf version="1.5">
   <model name="mapa">  
-  <pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+  <pose>0.0 1.2 0.25 0.0 0.0 0.0</pose>
+    <static>true</static>
 
     <link name="base_link">
       <inertial>
-        <pose>-0.064 0 0.048 0 0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <inertia>
           <ixx>4.2111447e-02</ixx>
           <ixy>0</ixy>
@@ -14,25 +15,25 @@
           <iyz>0</iyz>
           <izz>7.5254874e-02</izz>
         </inertia>
-        <mass>1.3729096e+00</mass>
+        <mass>2</mass>
       </inertial>
 
       <collision name="base_collision">
-        <pose>-0.064 0 0.048 0 0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <mesh>
             <uri>model://mapa/meshes/mapa.stl</uri>
-            <scale>0.001 0.001 0.001</scale>
+            <scale>0.01 0.01 0.01</scale>
           </mesh>
         </geometry>
       </collision>
 
       <visual name="base_visual">
-        <pose>-0.064 0 0 0 0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <mesh>
             <uri>model://mapa/meshes/mapa.stl</uri>
-            <scale>0.001 0.001 0.001</scale>
+            <scale>0.01 0.01 0.01</scale>
           </mesh>
         </geometry>
         <material> <!-- map material -->

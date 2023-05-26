@@ -15,7 +15,7 @@ setup(
   	    (os.path.join('share', package_name,'meshes'), glob('meshes/*')),
   	    (os.path.join('share', package_name,'urdf'), glob('urdf/*')),
   	    (os.path.join('share', package_name, 'config'), glob('config/*')),
-  	    (os.path.join('share', package_name,'worlds'), glob('worlds/*')),
+  	    (os.path.join('share', package_name,'sdf'), glob('sdf/*')),
   	    (os.path.join('share', package_name), glob('launch/*.py')),
     ],
     install_requires=['setuptools'],
@@ -28,7 +28,7 @@ setup(
     entry_points={
         'console_scripts': [
             #'trajectory_msg = icrane2.controller:main'
-            'sdf_spawner = my_turtlebot3_tb3.spawn_entity:main',
+            'sdf_spawn = my_turtlebot3.spawn_entity:main',
             'occupancy_grid = my_turtlebot3.occupancy_grid_pub:main',
             'listener = my_turtlebot3.subscriber_lidar:main',
         ],

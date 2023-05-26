@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="mapa">  
+  <pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+
+    <link name="base_link">
+      <inertial>
+        <pose>-0.064 0 0.048 0 0 0</pose>
+        <inertia>
+          <ixx>4.2111447e-02</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>4.2111447e-02</iyy>
+          <iyz>0</iyz>
+          <izz>7.5254874e-02</izz>
+        </inertia>
+        <mass>1.3729096e+00</mass>
+      </inertial>
+
+      <collision name="base_collision">
+        <pose>-0.064 0 0.048 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://mapa/meshes/mapa.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+      </collision>
+
+      <visual name="base_visual">
+        <pose>-0.064 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://mapa/meshes/mapa.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material> <!-- map material -->
+          <ambient>0.1 0.1 0.1 1</ambient>
+          <diffuse>0.1 0.1 0.2 1</diffuse>
+          <specular>0 0 0 0</specular>
+          <emissive>0 0 0 1</emissive>
+        </material> <!-- End map material -->
+      </visual>
+    </link>
+  </model>
+</sdf>

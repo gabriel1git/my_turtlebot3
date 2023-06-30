@@ -4,53 +4,43 @@ from nav2_simple_commander.robot_navigator import BasicNavigator
 from geometry_msgs.msg import PoseStamped
 import tf_transformations
 
+def create_pose_stamped(navigator: BasicNavigator, position_x, position_y, orientation_z):
+    q_x, q_y, q_z, q_w = tf_transformations.quaternion_from_euler(0.0, 0.0, orientation_z)
+    pose = PoseStamped()
+    pose.header.frame_id = 'map'
+    pose.header.stamp = navigator.get_clock().now().to_msg()
+    # -- Position
+    pose.pose.position.x = position_x
+    pose.pose.position.y = position_y
+    pose.pose.position.z = 0.0
+    # -- Orientation
+    pose.pose.orientation.x = q_x
+    pose.pose.orientation.y = q_y
+    pose.pose.orientation.z = q_z
+    pose.pose.orientation.w = q_w
+    return pose
+
 def main():
     # -- init
     rclpy.init()
     nav = BasicNavigator()
 
     # -- Set initial pose
-    q_x, q_y, q_z, q_w = tf_transformations.quaternion_from_euler(0.0, 0.0, 0.0)
-    initial_pose = PoseStamped()
-    initial_pose.header.frame_id = 'map'
-    initial_pose.header.stamp = nav.get_clock().now().to_msg()
-    # -- Position
-    initial_pose.pose.position.x = 0.0
-    initial_pose.pose.position.y = 0.0
-    initial_pose.pose.position.z = 0.0
-    # -- Orientation
-    initial_pose.pose.orientation.x = q_x
-    initial_pose.pose.orientation.y = q_y
-    initial_pose.pose.orientation.z = q_z
-    initial_pose.pose.orientation.w = q_w
+    initial_pose = create_pose_stamped(nav, 0.0, 0.0, 0.0)
     nav.setInitialPose(initial_pose)
 
     # -- Wait for nav2
     nav.waitUntilNav2Active()
 
     # -- Send Nav2 goal
-    
-    q_x, q_y, q_z, q_w = tf_transformations.quaternion_from_euler(0.0, 0.0, 1.57)
-    goal_pose = PoseStamped()
-    goal_pose.header.frame_id = 'map'
-    goal_pose.header.stamp = nav.get_clock().now().to_msg()
-    # -- Position
-    goal_pose.pose.position.x = 3.5
-    goal_pose.pose.position.y = 1.0
-    goal_pose.pose.position.z = 0.0
-    # -- Orientation
-    initial_pose.pose.orientation.x = q_x
-    initial_pose.pose.orientation.y = q_y
-    initial_pose.pose.orientation.z = q_z
-    initial_pose.pose.orientation.w = q_w
+    goal_pose = create_pose_stamped(nav, 2.5, 1.0, 1.57)
     nav.goToPose(goal_pose)
 
     while not nav.isTaskComplete():
         feedback = nav.getFeedback()
         print(feedback)
-
-
-
+        
+    print(nav.getResult())
 
     # -- shuntdown
     rclpy.shutdown()

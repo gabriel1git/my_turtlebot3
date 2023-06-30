@@ -33,13 +33,17 @@ def main():
     nav.waitUntilNav2Active()
 
     # -- Send Nav2 goal
-    goal_pose = create_pose_stamped(nav, 2.5, 1.0, 1.57)
-    nav.goToPose(goal_pose)
+    goal_pose1 = create_pose_stamped(nav, 3.5, 1.0, 1.57)
+    goal_pose2 = create_pose_stamped(nav, 2.0, 2.5, 3.14)
+    goal_pose3 = create_pose_stamped(nav, 0.5, 1.0, -1.57)
 
+    # -- Follow waypoints
+    waypoints = [goal_pose1, goal_pose2, goal_pose3]
+    nav.followWaypoints(waypoints)
     while not nav.isTaskComplete():
         feedback = nav.getFeedback()
         print(feedback)
-        
+
     print(nav.getResult())
 
     # -- shuntdown
